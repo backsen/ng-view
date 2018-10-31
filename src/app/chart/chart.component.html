@@ -1,7 +1,6 @@
 
-<h1>{{chart.title}}</h1>
-
 <ngx-charts-bar-vertical
+  #ngxChartsBarVertical
   *ngIf="chartType.name === 'bar-vertical'"
   class="chart-container"
   [scheme]="chart.colorScheme"
@@ -18,12 +17,14 @@
   [tooltipDisabled]="chart.tooltipDisabled"
   [xAxisLabel]="chart.xAxisLabel"
   [yAxisLabel]="chart.yAxisLabel"
+  [view] = "chart.view"
   [showGridLines]="chart.showGridLines"
   (select)="onSelect($event)"
   (deactivate)="onSelect()">
 </ngx-charts-bar-vertical>
 
 <ngx-charts-bar-horizontal
+  #ngxChartsBarHorizontal
   *ngIf="chartType.name === 'bar-horizontal'"
   class="chart-container"
   [scheme]="chart.colorScheme"
@@ -40,12 +41,14 @@
   [tooltipDisabled]="chart.tooltipDisabled"
   [xAxisLabel]="chart.xAxisLabel"
   [yAxisLabel]="chart.yAxisLabel"
+  [view] = "chart.view"
   [showGridLines]="chart.showGridLines"
   (select)="onSelect($event)"
   (deactivate)="onSelect()">
 </ngx-charts-bar-horizontal>
 
 <ngx-charts-pie-chart
+  #ngxChartsPieChart
   *ngIf="chartType.name === 'pie'"
   [scheme]="chart.colorScheme"
   [results]="data"
@@ -55,6 +58,7 @@
   [explodeSlices]="false"
   [labels]="chart.showXAxisLabel"
   [doughnut]="false"
+  [view] = "chart.view"
   [gradient]="chart.gradient"
   [tooltipDisabled]="chart.tooltipDisabled"
   (select)="onSelect($event)"
@@ -62,35 +66,43 @@
 </ngx-charts-pie-chart>
 
 <ngx-charts-pie-grid
+  #ngxChartsPieGrid
   *ngIf="chartType.name === 'pie-grid'"
   [scheme]="chart.colorScheme"
   [results]="data"
+  [view] = "chart.view"
   (select)="onSelect($event)"
   (deactivate)="onSelect()">
 </ngx-charts-pie-grid>
 
 <ngx-charts-tree-map
+  #ngxChartsTreeMap
   *ngIf="chartType.name === 'tree-map'"
   [scheme]="chart.colorScheme"
   [results]="data"
   [gradient]="chart.gradient"
+  [view] = "chart.view"
   [tooltipDisabled]="chart.tooltipDisabled"
   (select)="onSelect($event)"
   (deactivate)="onSelect()">
 </ngx-charts-tree-map>
 
 <ngx-charts-number-card
+  #ngxChartsNumberCard
   *ngIf="chartType.name === 'number-cards'"
   [scheme]="chart.colorScheme"
   [results]="data"
+  [view] = "chart.view"
   (select)="onSelect($event)"
   (deactivate)="onSelect()">
 </ngx-charts-number-card>
 
 <ngx-charts-gauge
+  #ngxChartsGauge
   *ngIf="chartType.name === 'guage'"
   [scheme]="chart.colorScheme"
   [results]="data"
+  [view] = "chart.view"
   [activeEntries]="activeEntries"
   [units]="chart.yAxisLabel"
   (select)="onSelect($event)"
@@ -98,11 +110,13 @@
 </ngx-charts-gauge>
 
 <ngx-charts-bar-vertical-2d
+  #ngxChartsBarVertical2d
   *ngIf="chartType.name === 'bar-vertical-2d'"
   class="chart-container"
   [scheme]="chart.colorScheme"
   [schemeType]="chart.schemeType"
   [results]="data"
+  [view] = "chart.view"
   [activeEntries]="activeEntries"
   [gradient]="chart.gradient"
   [xAxis]="chart.showXAxis"
@@ -121,11 +135,13 @@
 </ngx-charts-bar-vertical-2d>
 
 <ngx-charts-bar-horizontal-2d
+  #ngxChartsBarHorizontal2d
   *ngIf="chartType.name === 'bar-horizontal-2d'"
   class="chart-container"
   [scheme]="chart.colorScheme"
   [schemeType]="chart.schemeType"
   [results]="data"
+  [view] = "chart.view"
   [activeEntries]="activeEntries"
   [gradient]="chart.gradient"
   [tooltipDisabled]="chart.tooltipDisabled"
@@ -141,11 +157,13 @@
   [roundDomains]="chart.roundDomains">
 </ngx-charts-bar-horizontal-2d>
 <ngx-charts-bar-vertical-stacked
+  #ngxChartsBarVerticalStacked
   *ngIf="chartType.name === 'bar-vertical-stacked'"
   class="chart-container"
   [scheme]="chart.colorScheme"
   [schemeType]="chart.schemeType"
   [results]="data"
+  [view] = "chart.view"
   [activeEntries]="activeEntries"
   [gradient]="chart.gradient"
   [tooltipDisabled]="chart.tooltipDisabled"
@@ -166,6 +184,7 @@
   [scheme]="chart.colorScheme"
   [schemeType]="chart.schemeType"
   [results]="data"
+  [view] = "chart.view"
   [activeEntries]="activeEntries"
   [gradient]="chart.gradient"
   [xAxis]="chart.showXAxis"
@@ -185,6 +204,7 @@
   [scheme]="chart.colorScheme"
   [schemeType]="chart.schemeType"
   [results]="data"
+  [view] = "chart.view"
   [activeEntries]="activeEntries"
   [gradient]="chart.gradient"
   [tooltipDisabled]="chart.tooltipDisabled"
@@ -205,6 +225,7 @@
   [scheme]="chart.colorScheme"
   [schemeType]="chart.schemeType"
   [results]="data"
+  [view] = "chart.view"
   [activeEntries]="activeEntries"
   [gradient]="chart.gradient"
   [tooltipDisabled]="chart.tooltipDisabled"
@@ -225,6 +246,7 @@
   [scheme]="chart.colorScheme"
   [schemeType]="chart.schemeType"
   [results]="data"
+  [view] = "chart.view"
   [activeEntries]="activeEntries"
   [legend]="chart.showLegend"
   [legendTitle]="chart.legendTitle"
@@ -250,6 +272,7 @@
   [scheme]="chart.colorScheme"
   [schemeType]="chart.schemeType"
   [results]="data"
+  [view] = "chart.view"
   [activeEntries]="activeEntries"
   [legend]="chart.showLegend"
   [legendTitle]="chart.legendTitle"
@@ -273,6 +296,7 @@
   class="chart-container"
   [scheme]="chart.colorScheme"
   [results]="data"
+  [view] = "chart.view"
   [legend]="chart.showLegend"
   [gradient]="chart.gradient"
   [xAxis]="chart.showXAxis"
@@ -305,11 +329,5 @@
   [minRadius]="3"
   [maxRadius]="20">
 </ngx-charts-bubble-chart -->
-
-<div class="svg-saver-container">
-  Download: 
-  <ngx-button (click)="svgSaver.asSvg()">SVG</ngx-button>
-  <ngx-button (click)="svgSaver.asPng()">PNG</ngx-button>
-</div>
 
 

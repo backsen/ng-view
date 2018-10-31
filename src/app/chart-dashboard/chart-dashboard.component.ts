@@ -1,4 +1,5 @@
 import { Component, OnInit, Input, NgZone } from '@angular/core';
+import {CompactType, DisplayGrid, GridsterConfig, GridsterItem, GridType} from 'angular-gridster2';
 
 import { Universe, Chart, Filter, Data, Query } from '../data.models';
 import { DataService } from '../data.service';
@@ -12,11 +13,80 @@ export class ChartDashboardComponent implements OnInit {
 
   @Input() charts: Chart[] = [];
   @Input() filters: Filter[] = [];
+  options: GridsterConfig;
+  dashboard: Array<GridsterItem>;
 
   constructor(private ngZone: NgZone, private dataService: DataService) { }
 
   ngOnInit() {
+    this.options = {
+      gridType: GridType.Fixed,
+      compactType: CompactType.CompactUpAndLeft,
+      margin: 10,
+      outerMargin: true,
+      outerMarginTop: null,
+      outerMarginRight: null,
+      outerMarginBottom: null,
+      outerMarginLeft: null,
+      mobileBreakpoint: 640,
+      minCols: 1,
+      maxCols: 100000,
+      minRows: 1,
+      maxRows: 100000,
+      maxItemCols: 100,
+      minItemCols: 1,
+      maxItemRows: 100,
+      minItemRows: 1,
+      maxItemArea: 2500,
+      minItemArea: 1,
+      defaultItemCols: 1,
+      defaultItemRows: 1,
+      fixedColWidth: 10,
+      fixedRowHeight: 10,
+      keepFixedHeightInMobile: false,
+      keepFixedWidthInMobile: false,
+      scrollSensitivity: 10,
+      scrollSpeed: 20,
+      enableEmptyCellClick: false,
+      enableEmptyCellContextMenu: false,
+      enableEmptyCellDrop: false,
+      enableEmptyCellDrag: false,
+      emptyCellDragMaxCols: 50,
+      emptyCellDragMaxRows: 50,
+      ignoreMarginInRow: false,
+      draggable: {
+        enabled: true,
+      },
+      resizable: {
+        enabled: true,
+      },
+      swap: true,
+      pushItems: true,
+      disablePushOnDrag: false,
+      disablePushOnResize: false,
+      pushDirections: {north: true, east: true, south: true, west: true},
+      pushResizeItems: false,
+      displayGrid: DisplayGrid.Always,
+      disableWindowResize: false,
+      disableWarnings: false,
+      scrollToNewItems: false,
+      itemResizeCallback: this.resize.bind(this)
+    };
   }
+
+  resize(gridsterItem,gridsterItemComponent){
+    this.charts[gridsterItem.index]['view'] = [gridsterItemComponent.width , gridsterItemComponent.height];
+    this.charts[gridsterItem.index]['update'] = Date.now();
+  }
+
+  itemChange(item, itemComponent) {
+    console.info('itemChanged', item, itemComponent);
+  }
+
+  itemResize(item, itemComponent) {
+    console.info('itemResized', item, itemComponent);
+  }
+
 
   onClear(_filter?: Filter): Promise<void> {
     const filters = _filter ? [_filter] : this.filters;

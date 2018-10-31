@@ -1,6 +1,6 @@
 <h1>ngx-chart dashboard builder
   <small class="pull-right">
-    <button class="btn btn-primary" (click)="onResetClicked()">Reset</button>
+    <button class="btn btn-primary" (click)="onResetClicked()">重置</button>
     <a href="https://github.com/swimlane/ngx-charts-dashboard" class="btn btn-default">Github</a>
   </small>
 </h1>
@@ -34,8 +34,10 @@
       <app-chart-builder (addChart)="addChartToDashboard($event)"></app-chart-builder>
     </ngx-tab>
     <ngx-tab title="Dashboard" [disabled]="charts.length < 1" #dashboardTab>
-      <app-chart-dashboard [charts]="charts" [filters]="filters"></app-chart-dashboard>
+      
     </ngx-tab>
   </ngx-tabs>
+
+  <app-chart-dashboard *ngIf = "dashboardShow" [charts]="charts" [filters]="filters"></app-chart-dashboard>
 
 </div>

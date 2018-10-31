@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, EventEmitter, Output, HostBinding, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter, Output, HostBinding, ViewEncapsulation , ViewChild} from '@angular/core';
 import * as SvgSaver from 'svgsaver';
 
 import { Universe, Chart, Filter, Data, Query } from '../data.models';
@@ -12,11 +12,30 @@ const EMPTY = [];
   encapsulation: ViewEncapsulation.None
 })
 export class ChartComponent implements OnInit {
+
+  // chartsNames: Array<string> = [
+  //   'ngxChartsBarVertical' , 'ngxChartsBarHorizontal' , 'ngxChartsPieChart',
+  //   'ngxChartsPieGrid' , 'ngxChartsTreeMap' , 'ngxChartsNumberCard',
+  //   'ngxChartsGauge' , 'ngxChartsBarVertical2d' , 'ngxChartsBarHorizontal2d',
+  //   'ngxChartsBarVerticalStacked' , ''
+  // ];
+
+  @ViewChild('ngxChartsBarVertical') ngxChartsBarVertical;
+  @ViewChild('ngxChartsBarHorizontal') ngxChartsBarHorizontal;
+
   @Output() select: EventEmitter<{chart: Chart, value?: any}> = new EventEmitter();
 
   @Input() chart: Chart;
   @Input() chartType: any;
   @Input() data: Data[];
+
+  @Input() set update(value){
+    console.log(456);
+    if(this.ngxChartsBarVertical){
+      // this.ngxChartsBarVertical.update();
+    }
+  }
+
 
   svgSaver = new SvgSaver();
 
@@ -35,9 +54,16 @@ export class ChartComponent implements OnInit {
     return this._activeEntries && this._activeEntries.length > 0;
   }
 
-  constructor() { }
+  constructor() {
+    
+   }
+
+  ngAfterViewInit(){
+
+  }
 
   ngOnInit() {
+    console.log(this.chart);
   }
 
   onSelect(data: Data) {

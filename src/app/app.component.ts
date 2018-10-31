@@ -19,6 +19,8 @@ export class AppComponent implements OnInit {
   charts: Chart[] = [];
   filters: Filter[] = [];
 
+  dashboardShow: boolean = false;
+
   @ViewChild('tabs') tabs: TabsComponent;
   @ViewChild('dashboardTab') dashboardTab: TabComponent;
   @ViewChild('dataTab') dataTab: TabComponent;
@@ -88,8 +90,11 @@ export class AppComponent implements OnInit {
 
     chart.xFilter = this.addFilter(chart.xQuery);
     chart.yFilter = this.addFilter(chart.yQuery);
-
+    chart.view = [700 , 300];
+    chart['update'] = Date.now();
+    console.log(chart);
     this.tabs.tabClicked(this.dashboardTab);
+    this.dashboardShow = true;
   }
 
   private async updateData(value = this._dataText) {
